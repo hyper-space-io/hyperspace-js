@@ -143,7 +143,7 @@ export const HyperspaceApiAxiosParamCreator = function (configuration?: Configur
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(document, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = document
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -187,7 +187,7 @@ export const HyperspaceApiAxiosParamCreator = function (configuration?: Configur
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(document, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = document
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -875,7 +875,7 @@ export const HyperspaceApiAxiosParamCreator = function (configuration?: Configur
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(document, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = document
 
             return {
                 url: toPathString(localVarUrlObj),
