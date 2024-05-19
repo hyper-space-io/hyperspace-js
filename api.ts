@@ -77,6 +77,31 @@ export interface LoginDto {
 /**
  * 
  * @export
+ * @interface Script
+ */
+export interface Script {
+    /**
+     * A string with the contents of the script.
+     * @type {string}
+     * @memberof Script
+     */
+    'source': string;
+    /**
+     * Scripting language.
+     * @type {string}
+     * @memberof Script
+     */
+    'lang'?: string;
+    /**
+     * Parameters passed to the script.
+     * @type {{ [key: string]: any; }}
+     * @memberof Script
+     */
+    'params'?: { [key: string]: any; };
+}
+/**
+ * 
+ * @export
  * @interface StatusDto
  */
 export interface StatusDto {
@@ -98,6 +123,25 @@ export interface StatusDto {
      * @memberof StatusDto
      */
     'message'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface UpdateByQuery
+ */
+export interface UpdateByQuery {
+    /**
+     * 
+     * @type {any}
+     * @memberof UpdateByQuery
+     */
+    'query': any;
+    /**
+     * 
+     * @type {Script}
+     * @memberof UpdateByQuery
+     */
+    'script': Script;
 }
 
 /**
@@ -830,6 +874,50 @@ export const HyperspaceApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * 
+         * @summary Update documents that match a query using a script
+         * @param {string} collectionName 
+         * @param {UpdateByQuery} updateByQuery 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateByQuery: async (collectionName: string, updateByQuery: UpdateByQuery, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'collectionName' is not null or undefined
+            assertParamExists('updateByQuery', 'collectionName', collectionName)
+            // verify required parameter 'updateByQuery' is not null or undefined
+            assertParamExists('updateByQuery', 'updateByQuery', updateByQuery)
+            const localVarPath = `/api/v1/{collectionName}/document/update_by_query`
+                .replace(`{${"collectionName"}}`, encodeURIComponent(String(collectionName)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/msgpack';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(updateByQuery, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Update document by Id in the collection
          * @param {string} collectionName 
          * @param {Document} document 
@@ -1128,6 +1216,20 @@ export const HyperspaceApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Update documents that match a query using a script
+         * @param {string} collectionName 
+         * @param {UpdateByQuery} updateByQuery 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async updateByQuery(collectionName: string, updateByQuery: UpdateByQuery, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateByQuery(collectionName, updateByQuery, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['HyperspaceApi.updateByQuery']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
          * @summary Update document by Id in the collection
          * @param {string} collectionName 
          * @param {Document} document 
@@ -1334,6 +1436,17 @@ export const HyperspaceApiFactory = function (configuration?: Configuration, bas
          */
         setFunction(collectionName: string, functionName: string, body: any, options?: any): AxiosPromise<StatusDto> {
             return localVarFp.setFunction(collectionName, functionName, body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Update documents that match a query using a script
+         * @param {string} collectionName 
+         * @param {UpdateByQuery} updateByQuery 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateByQuery(collectionName: string, updateByQuery: UpdateByQuery, options?: any): AxiosPromise<string> {
+            return localVarFp.updateByQuery(collectionName, updateByQuery, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1573,6 +1686,19 @@ export class HyperspaceApi extends BaseAPI {
      */
     public setFunction(collectionName: string, functionName: string, body: any, options?: RawAxiosRequestConfig) {
         return HyperspaceApiFp(this.configuration).setFunction(collectionName, functionName, body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Update documents that match a query using a script
+     * @param {string} collectionName 
+     * @param {UpdateByQuery} updateByQuery 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof HyperspaceApi
+     */
+    public updateByQuery(collectionName: string, updateByQuery: UpdateByQuery, options?: RawAxiosRequestConfig) {
+        return HyperspaceApiFp(this.configuration).updateByQuery(collectionName, updateByQuery, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
