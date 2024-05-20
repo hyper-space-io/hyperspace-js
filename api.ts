@@ -42,18 +42,14 @@ export interface AuthDto {
  * @interface Document
  */
 export interface Document {
+    [key: string]: any;
+
     /**
      * 
      * @type {string}
      * @memberof Document
      */
     'id'?: string;
-    /**
-     * 
-     * @type {{ [key: string]: any; }}
-     * @memberof Document
-     */
-    'content'?: { [key: string]: any; };
 }
 /**
  * 
