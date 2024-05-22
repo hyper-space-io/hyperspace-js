@@ -44,12 +44,15 @@ export class HyperspaceClient extends HyperspaceApi {
                         for (let doc of config.data) {
                             docs.push(encode(doc))
                         }
-                        config.data = encode(docs);
+                        let encoded = encode(docs);
+                        config.data = Buffer.from(encoded.buffer, encoded.byteOffset, encoded.byteLength);
                     } else {
-                        if (config.data.constructor != ArrayBuffer) {
-                            config.data = encode(config.data);
+                        if (config.data.constructor != Buffer) {
+                            let encoded = encode(config.data);
+                            config.data = Buffer.from(encoded.buffer, encoded.byteOffset, encoded.byteLength);
                         }
                     }
+                    config.headers['content-length'] = config.data.length;
                 }
                 return config;
             }, async (error) => {
