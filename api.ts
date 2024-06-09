@@ -774,19 +774,19 @@ export const HyperspaceApiAxiosParamCreator = function (configuration?: Configur
          * @summary Find top X similar documents in the dataset according to the selected search option.
          * @param {string} collectionName 
          * @param {number} size 
-         * @param {any} body 
+         * @param {Document} document 
          * @param {string} [functionName] 
          * @param {boolean} [debug] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        search: async (collectionName: string, size: number, body: any, functionName?: string, debug?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        search: async (collectionName: string, size: number, document: Document, functionName?: string, debug?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'collectionName' is not null or undefined
             assertParamExists('search', 'collectionName', collectionName)
             // verify required parameter 'size' is not null or undefined
             assertParamExists('search', 'size', size)
-            // verify required parameter 'body' is not null or undefined
-            assertParamExists('search', 'body', body)
+            // verify required parameter 'document' is not null or undefined
+            assertParamExists('search', 'document', document)
             const localVarPath = `/api/v1/{collectionName}/search`
                 .replace(`{${"collectionName"}}`, encodeURIComponent(String(collectionName)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -818,12 +818,12 @@ export const HyperspaceApiAxiosParamCreator = function (configuration?: Configur
 
 
     
-            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Content-Type'] = 'application/msgpack';
 
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = document
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -1195,14 +1195,14 @@ export const HyperspaceApiFp = function(configuration?: Configuration) {
          * @summary Find top X similar documents in the dataset according to the selected search option.
          * @param {string} collectionName 
          * @param {number} size 
-         * @param {any} body 
+         * @param {Document} document 
          * @param {string} [functionName] 
          * @param {boolean} [debug] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async search(collectionName: string, size: number, body: any, functionName?: string, debug?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.search(collectionName, size, body, functionName, debug, options);
+        async search(collectionName: string, size: number, document: Document, functionName?: string, debug?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.search(collectionName, size, document, functionName, debug, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['HyperspaceApi.search']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -1426,14 +1426,14 @@ export const HyperspaceApiFactory = function (configuration?: Configuration, bas
          * @summary Find top X similar documents in the dataset according to the selected search option.
          * @param {string} collectionName 
          * @param {number} size 
-         * @param {any} body 
+         * @param {Document} document 
          * @param {string} [functionName] 
          * @param {boolean} [debug] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        search(collectionName: string, size: number, body: any, functionName?: string, debug?: boolean, options?: any): AxiosPromise<any> {
-            return localVarFp.search(collectionName, size, body, functionName, debug, options).then((request) => request(axios, basePath));
+        search(collectionName: string, size: number, document: Document, functionName?: string, debug?: boolean, options?: any): AxiosPromise<any> {
+            return localVarFp.search(collectionName, size, document, functionName, debug, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1675,15 +1675,15 @@ export class HyperspaceApi extends BaseAPI {
      * @summary Find top X similar documents in the dataset according to the selected search option.
      * @param {string} collectionName 
      * @param {number} size 
-     * @param {any} body 
+     * @param {Document} document 
      * @param {string} [functionName] 
      * @param {boolean} [debug] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof HyperspaceApi
      */
-    public search(collectionName: string, size: number, body: any, functionName?: string, debug?: boolean, options?: RawAxiosRequestConfig) {
-        return HyperspaceApiFp(this.configuration).search(collectionName, size, body, functionName, debug, options).then((request) => request(this.axios, this.basePath));
+    public search(collectionName: string, size: number, document: Document, functionName?: string, debug?: boolean, options?: RawAxiosRequestConfig) {
+        return HyperspaceApiFp(this.configuration).search(collectionName, size, document, functionName, debug, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
