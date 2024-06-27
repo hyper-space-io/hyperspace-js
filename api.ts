@@ -39,6 +39,38 @@ export interface AuthDto {
 /**
  * 
  * @export
+ * @interface DeleteByQueryRequest
+ */
+export interface DeleteByQueryRequest {
+    /**
+     * Specifies the documents to delete using the Query DSL.
+     * @type {any}
+     * @memberof DeleteByQueryRequest
+     */
+    'query'?: any;
+}
+/**
+ * 
+ * @export
+ * @interface DeleteByQueryResponse
+ */
+export interface DeleteByQueryResponse {
+    /**
+     * The number of milliseconds from start to end of the whole operation.
+     * @type {number}
+     * @memberof DeleteByQueryResponse
+     */
+    'took'?: number;
+    /**
+     * The number of documents that were successfully deleted.
+     * @type {number}
+     * @memberof DeleteByQueryResponse
+     */
+    'deleted'?: number;
+}
+/**
+ * 
+ * @export
  * @interface Document
  */
 export interface Document {
@@ -382,6 +414,50 @@ export const HyperspaceApiAxiosParamCreator = function (configuration?: Configur
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Deletes documents that match the specified query.
+         * @param {string} collectionName 
+         * @param {DeleteByQueryRequest} deleteByQueryRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteByQuery: async (collectionName: string, deleteByQueryRequest: DeleteByQueryRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'collectionName' is not null or undefined
+            assertParamExists('deleteByQuery', 'collectionName', collectionName)
+            // verify required parameter 'deleteByQueryRequest' is not null or undefined
+            assertParamExists('deleteByQuery', 'deleteByQueryRequest', deleteByQueryRequest)
+            const localVarPath = `/api/v1/{collectionName}/delete_by_query`
+                .replace(`{${"collectionName"}}`, encodeURIComponent(String(collectionName)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(deleteByQueryRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -891,7 +967,7 @@ export const HyperspaceApiAxiosParamCreator = function (configuration?: Configur
             assertParamExists('updateByQuery', 'collectionName', collectionName)
             // verify required parameter 'updateByQuery' is not null or undefined
             assertParamExists('updateByQuery', 'updateByQuery', updateByQuery)
-            const localVarPath = `/api/v1/{collectionName}/document/update_by_query`
+            const localVarPath = `/api/v1/{collectionName}/update_by_query`
                 .replace(`{${"collectionName"}}`, encodeURIComponent(String(collectionName)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1064,6 +1140,20 @@ export const HyperspaceApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createCollection(collectionName, body, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['HyperspaceApi.createCollection']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @summary Deletes documents that match the specified query.
+         * @param {string} collectionName 
+         * @param {DeleteByQueryRequest} deleteByQueryRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteByQuery(collectionName: string, deleteByQueryRequest: DeleteByQueryRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeleteByQueryResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteByQuery(collectionName, deleteByQueryRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['HyperspaceApi.deleteByQuery']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -1246,7 +1336,7 @@ export const HyperspaceApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateDocument(collectionName: string, document: Document, partialUpdate?: boolean, docAsUpsert?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
+        async updateDocument(collectionName: string, document: Document, partialUpdate?: boolean, docAsUpsert?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updateDocument(collectionName, document, partialUpdate, docAsUpsert, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['HyperspaceApi.updateDocument']?.[localVarOperationServerIndex]?.url;
@@ -1323,6 +1413,17 @@ export const HyperspaceApiFactory = function (configuration?: Configuration, bas
          */
         createCollection(collectionName: string, body: any, options?: any): AxiosPromise<any> {
             return localVarFp.createCollection(collectionName, body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Deletes documents that match the specified query.
+         * @param {string} collectionName 
+         * @param {DeleteByQueryRequest} deleteByQueryRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteByQuery(collectionName: string, deleteByQueryRequest: DeleteByQueryRequest, options?: any): AxiosPromise<DeleteByQueryResponse> {
+            return localVarFp.deleteByQuery(collectionName, deleteByQueryRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1468,7 +1569,7 @@ export const HyperspaceApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateDocument(collectionName: string, document: Document, partialUpdate?: boolean, docAsUpsert?: boolean, options?: any): AxiosPromise<string> {
+        updateDocument(collectionName: string, document: Document, partialUpdate?: boolean, docAsUpsert?: boolean, options?: any): AxiosPromise<any> {
             return localVarFp.updateDocument(collectionName, document, partialUpdate, docAsUpsert, options).then((request) => request(axios, basePath));
         },
     };
@@ -1553,6 +1654,19 @@ export class HyperspaceApi extends BaseAPI {
      */
     public createCollection(collectionName: string, body: any, options?: RawAxiosRequestConfig) {
         return HyperspaceApiFp(this.configuration).createCollection(collectionName, body, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Deletes documents that match the specified query.
+     * @param {string} collectionName 
+     * @param {DeleteByQueryRequest} deleteByQueryRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof HyperspaceApi
+     */
+    public deleteByQuery(collectionName: string, deleteByQueryRequest: DeleteByQueryRequest, options?: RawAxiosRequestConfig) {
+        return HyperspaceApiFp(this.configuration).deleteByQuery(collectionName, deleteByQueryRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
