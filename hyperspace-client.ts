@@ -17,7 +17,7 @@ export interface DeleteByQueryRequest {
     };
 }
 
-export type ScriptLanguage = 'expression' | 'js';
+export type ScriptLanguage = 'painless';
 export interface InlineScript {
     lang?: ScriptLanguage;
     params?: Record<string, any>
@@ -311,7 +311,7 @@ export class HyperspaceClient {
                     id: params.id,
                     script: {
                         source: params.body.script,
-                        lang: params.lang || 'js',
+                        lang: params.lang || 'painless',
                     }
                 }
             } else {
@@ -320,7 +320,7 @@ export class HyperspaceClient {
                     script: {
                         source: params.body.script.source,
                         params: params.body.script.params,
-                        lang: params.body.script.lang || 'js',
+                        lang: params.body.script.lang || 'painless',
                     }
                 }
             }
@@ -349,7 +349,7 @@ export class HyperspaceClient {
             script = {
                 source: params.body.script.source,
                 params: params.body.script.params,
-                lang: params.body.script.lang ?? 'js'
+                lang: params.body.script.lang ?? 'painless'
             };
         }
         let body: UpdateByQuery = {
