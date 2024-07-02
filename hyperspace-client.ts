@@ -48,6 +48,7 @@ export interface SearchRequest {
     index: string;
     size: number,
     body?: any;
+    _source?: boolean
 }
 
 export interface GetRequest {
@@ -380,7 +381,7 @@ export class HyperspaceClient {
      * @param params
      */
     search(params: SearchRequest) {
-        return this.api.dslSearch(params.index, params.size, params.body);
+        return this.api.dslSearch(params.index, params.size, params.body, params._source || false);
     }
 
     /**
@@ -392,12 +393,10 @@ export class HyperspaceClient {
     async get(params: GetRequest): Promise<GetResponse> {
         try {
             let data = await this.api.getDocument(params.index, params.id);
-            let id = data.data._id;
-            delete data.data._id;
             return {
                 _index: params.index,
                 found: true,
-                _id: id,
+                _id: params.id,
                 _source: data.data,
             }
         } catch (error) {
