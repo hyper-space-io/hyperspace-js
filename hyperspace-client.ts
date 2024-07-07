@@ -367,11 +367,11 @@ export class HyperspaceClient {
      * @param {number} size
      * @param {Document} document
      * @param {string} [functionName]
-     * @param {boolean} [debug]
+     * @param {boolean} [source]
      * @memberof HyperspaceClient
      */
-    pythonSearch(collectionName: string, size: number, document: Document, functionName?: string, debug?: boolean) {
-        return this.api.search(collectionName, size, document, functionName, debug)
+    pythonSearch(collectionName: string, size: number, document: Document, functionName?: string, source?: boolean) {
+        return this.api.search(collectionName, size, document, functionName, "", source || false);
     }
 
     /**
@@ -381,7 +381,7 @@ export class HyperspaceClient {
      * @param params
      */
     search(params: SearchRequest) {
-        return this.api.dslSearch(params.index, params.size, params.body, params._source || false);
+        return this.api.dslSearch(params.index, params.size, params.body, "", params._source || false);
     }
 
     /**
