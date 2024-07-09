@@ -381,7 +381,7 @@ export class HyperspaceClient {
      * @memberof HyperspaceClient
      */
     pythonSearch(collectionName: string, size: number, document: Document, functionName?: string, source?: boolean) {
-        return this.api.search(collectionName, size, document, functionName, "", source || false);
+        return this.api.search(collectionName, size, document, functionName, "", source !== undefined ? source : true);
     }
 
     /**
@@ -391,7 +391,7 @@ export class HyperspaceClient {
      * @param params
      */
     async search(params: SearchRequest){
-        let response = await this.api.dslSearch(params.index, params.body.size || 10, params.body.query, "", params._source || false);
+        let response = await this.api.dslSearch(params.index, params.body.size || 10, params.body.query, "", params._source !== undefined ? params._source : true);
         let responseWithBody: AxiosResponseWithBody = {
             ...response,
             body: response.data,
