@@ -46,9 +46,11 @@ export interface UpdateRequest {
 
 export interface SearchRequest {
     index: string;
-    size: number,
-    body?: any;
-    _source?: boolean
+    body: {
+        size?: number,
+        query: any,
+    };
+    _source?: boolean;
 }
 
 export interface GetRequest {
@@ -385,7 +387,7 @@ export class HyperspaceClient {
      * @param params
      */
     search(params: SearchRequest) {
-        return this.api.dslSearch(params.index, params.size, params.body, "", params._source || false);
+        return this.api.dslSearch(params.index, params.body.size || 10, params.body.query, "", params._source || false);
     }
 
     /**
