@@ -2,7 +2,11 @@ import { HyperspaceApi, Document, LoginDto, UpdateByQuery, Script as UpdateByQue
 import { Configuration } from './configuration'
 import { decode, encode } from '@msgpack/msgpack'
 import { BASE_PATH } from "./base";
-import globalAxios from 'axios';
+import globalAxios, {AxiosResponse} from 'axios';
+
+interface AxiosResponseWithBody<T = any> extends AxiosResponse<T> {
+    body: T;
+}
 
 export interface IndexRequest {
     id: string;
@@ -386,8 +390,14 @@ export class HyperspaceClient {
      * @memberof HyperspaceClient
      * @param params
      */
-    search(params: SearchRequest) {
-        return this.api.dslSearch(params.index, params.body.size || 10, params.body.query, "", params._source || false);
+    async search(params: SearchRequest){
+        let response = await this.api.dslSearch(params.index, params.body.size || 10, params.body.query, "", params._source || false);
+        let responseWithBody: AxiosResponseWithBody = {
+            ...response,
+            body: response.data,
+        };
+        delete responseWithBody['data'];
+        return responseWithBody;
     }
 
     /**
@@ -396,21 +406,22 @@ export class HyperspaceClient {
      * @memberof HyperspaceClient
      * @param params
      */
-    async get(params: GetRequest): Promise<GetResponse> {
+    async get(params: GetRequest) {
         try {
-            let data = await this.api.getDocument(params.index, params.id);
-            return {
-                _index: params.index,
-                found: true,
-                _id: params.id,
-                _source: data.data,
-            }
+            let response = await this.api.getDocument(params.index, params.id);
+            let responseWithBody: AxiosResponseWithBody = {
+                ...response,
+                body: {
+                    _index: params.index,
+                    found: true,
+                    _id: params.id,
+                    _source: response.data,
+                }
+            };
+            delete responseWithBody['data'];
+            return responseWithBody;
         } catch (error) {
-            return {
-                _index: params.index,
-                found: false,
-                _id: params.id,
-            }
+            throw error;
         }
     }
 }
