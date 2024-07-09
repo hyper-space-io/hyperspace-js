@@ -65,6 +65,10 @@ export interface IndicesCreateRequest {
     }
 }
 
+export interface IndicesDeleteRequest {
+    index: string;
+}
+
 export interface GetResponse {
     _index: string;
     found: boolean;
@@ -78,7 +82,7 @@ export class Indices {
     /**
      *
      * @summary Create a new collection
-     * @param {any} params
+     * @param {IndicesCreateRequest} params
      * @memberof Indices
      */
     create(params: IndicesCreateRequest) {
@@ -86,6 +90,16 @@ export class Indices {
             "configuration": params.body.mappings.properties
         };
         return this.api.createCollection(params.index, schema);
+    }
+
+    /**
+     *
+     * @summary Delete a collection
+     * @param {IndicesDeleteRequest} params
+     * @memberof Indices
+     */
+    delete(params: IndicesDeleteRequest) {
+        return this.api.deleteCollection(params.index);
     }
 }
 
@@ -180,16 +194,6 @@ export class HyperspaceClient {
      */
     commit(collectionName: string) {
         return this.api.commit(collectionName);
-    }
-
-    /**
-     *
-     * @summary Delete a collection
-     * @param {string} collectionName
-     * @memberof HyperspaceClient
-     */
-    deleteCollection(collectionName: string) {
-        return this.api.deleteCollection(collectionName);
     }
 
     /**
