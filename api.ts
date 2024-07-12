@@ -1080,7 +1080,7 @@ export const HyperspaceApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async addBatch(collectionName: string, document: Array<Document>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StatusDto>> {
+        async addBatch(collectionName: string, document: Array<Document>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.addBatch(collectionName, document, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['HyperspaceApi.addBatch']?.[localVarOperationServerIndex]?.url;
@@ -1094,7 +1094,7 @@ export const HyperspaceApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async addDocument(collectionName: string, document: Document, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StatusDto>> {
+        async addDocument(collectionName: string, document: Document, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.addDocument(collectionName, document, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['HyperspaceApi.addDocument']?.[localVarOperationServerIndex]?.url;
@@ -1372,7 +1372,7 @@ export const HyperspaceApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        addBatch(collectionName: string, document: Array<Document>, options?: any): AxiosPromise<StatusDto> {
+        addBatch(collectionName: string, document: Array<Document>, options?: any): AxiosPromise<any> {
             return localVarFp.addBatch(collectionName, document, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1383,7 +1383,7 @@ export const HyperspaceApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        addDocument(collectionName: string, document: Document, options?: any): AxiosPromise<StatusDto> {
+        addDocument(collectionName: string, document: Document, options?: any): AxiosPromise<any> {
             return localVarFp.addDocument(collectionName, document, options).then((request) => request(axios, basePath));
         },
         /**
