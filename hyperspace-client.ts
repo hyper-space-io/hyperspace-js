@@ -52,7 +52,7 @@ export interface SearchRequest {
     index: string;
     body: {
         size?: number,
-        query: any,
+        query?: any,
     };
     _source?: boolean;
 }
@@ -391,7 +391,7 @@ export class HyperspaceClient {
      * @param params
      */
     async search(params: SearchRequest){
-        let response = await this.api.dslSearch(params.index, params.body.size || 10, params.body.query, "", params._source !== undefined ? params._source : true);
+        let response = await this.api.dslSearch(params.index, params.body.size || 10, params.body, "", params._source !== undefined ? params._source : true);
         let responseWithBody: AxiosResponseWithBody = {
             ...response,
             body: response.data,
