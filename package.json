@@ -1,6 +1,6 @@
 {
   "name": "hyperspace-js",
-  "version": "2.0.58",
+  "version": "2.0.72",
   "description": "OpenAPI client for hyperspace-js",
   "author": "OpenAPI-Generator Contributors",
   "repository": {
@@ -24,7 +24,7 @@
     "prepare": "npm run build"
   },
   "dependencies": {
-    "@msgpack/msgpack": "^3.0.0-beta3",
+    "@msgpack/msgpack": "^3.0.1",
     "axios": "^1.6.1"
   },
   "devDependencies": {
