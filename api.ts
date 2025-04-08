@@ -549,48 +549,6 @@ export const HyperspaceApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * 
-         * @summary Delete function by name
-         * @param {string} collectionName 
-         * @param {string} functionName 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        deleteFunction: async (collectionName: string, functionName: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'collectionName' is not null or undefined
-            assertParamExists('deleteFunction', 'collectionName', collectionName)
-            // verify required parameter 'functionName' is not null or undefined
-            assertParamExists('deleteFunction', 'functionName', functionName)
-            const localVarPath = `/api/v1/{collectionName}/function/delete/{functionName}`
-                .replace(`{${"collectionName"}}`, encodeURIComponent(String(collectionName)))
-                .replace(`{${"functionName"}}`, encodeURIComponent(String(functionName)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
          * @summary Find top X similar documents in the dataset using Elasticsearch DSL query
          * @param {string} collectionName 
          * @param {number} size 
@@ -688,48 +646,6 @@ export const HyperspaceApiAxiosParamCreator = function (configuration?: Configur
             if (metadataOnly !== undefined) {
                 localVarQueryParameter['metadata_only'] = metadataOnly;
             }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Get Function
-         * @param {string} collectionName 
-         * @param {string} functionName 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getFunction: async (collectionName: string, functionName: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'collectionName' is not null or undefined
-            assertParamExists('getFunction', 'collectionName', collectionName)
-            // verify required parameter 'functionName' is not null or undefined
-            assertParamExists('getFunction', 'functionName', functionName)
-            const localVarPath = `/api/v1/{collectionName}/function/{functionName}`
-                .replace(`{${"collectionName"}}`, encodeURIComponent(String(collectionName)))
-                .replace(`{${"functionName"}}`, encodeURIComponent(String(functionName)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
@@ -844,120 +760,6 @@ export const HyperspaceApiAxiosParamCreator = function (configuration?: Configur
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Find top X similar documents in the dataset according to the selected search option.
-         * @param {string} collectionName 
-         * @param {number} size 
-         * @param {Document} document 
-         * @param {string} [functionName] 
-         * @param {string} [_options] 
-         * @param {boolean} [source] Indicates whether source fields are returned for matching documents.These fields are returned in the hits._source property of the search response.Defaults to false.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        search: async (collectionName: string, size: number, document: Document, functionName?: string, _options?: string, source?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'collectionName' is not null or undefined
-            assertParamExists('search', 'collectionName', collectionName)
-            // verify required parameter 'size' is not null or undefined
-            assertParamExists('search', 'size', size)
-            // verify required parameter 'document' is not null or undefined
-            assertParamExists('search', 'document', document)
-            const localVarPath = `/api/v1/{collectionName}/search`
-                .replace(`{${"collectionName"}}`, encodeURIComponent(String(collectionName)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (size !== undefined) {
-                localVarQueryParameter['size'] = size;
-            }
-
-            if (functionName !== undefined) {
-                localVarQueryParameter['functionName'] = functionName;
-            }
-
-            if (_options !== undefined) {
-                localVarQueryParameter['options'] = _options;
-            }
-
-            if (source !== undefined) {
-                localVarQueryParameter['_source'] = source;
-            }
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/msgpack';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = document
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
-         * @summary Set Function
-         * @param {string} collectionName 
-         * @param {string} functionName 
-         * @param {any} body 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        setFunction: async (collectionName: string, functionName: string, body: any, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'collectionName' is not null or undefined
-            assertParamExists('setFunction', 'collectionName', collectionName)
-            // verify required parameter 'functionName' is not null or undefined
-            assertParamExists('setFunction', 'functionName', functionName)
-            // verify required parameter 'body' is not null or undefined
-            assertParamExists('setFunction', 'body', body)
-            const localVarPath = `/api/v1/{collectionName}/function/{functionName}`
-                .replace(`{${"collectionName"}}`, encodeURIComponent(String(collectionName)))
-                .replace(`{${"functionName"}}`, encodeURIComponent(String(functionName)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'text/plain';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -1195,20 +997,6 @@ export const HyperspaceApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Delete function by name
-         * @param {string} collectionName 
-         * @param {string} functionName 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async deleteFunction(collectionName: string, functionName: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StatusDto>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteFunction(collectionName, functionName, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['HyperspaceApi.deleteFunction']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
          * @summary Find top X similar documents in the dataset using Elasticsearch DSL query
          * @param {string} collectionName 
          * @param {number} size 
@@ -1237,20 +1025,6 @@ export const HyperspaceApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getDocument(collectionName, documentId, metadataOnly, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['HyperspaceApi.getDocument']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Get Function
-         * @param {string} collectionName 
-         * @param {string} functionName 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async getFunction(collectionName: string, functionName: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getFunction(collectionName, functionName, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['HyperspaceApi.getFunction']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -1289,39 +1063,6 @@ export const HyperspaceApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.resetPassword(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['HyperspaceApi.resetPassword']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Find top X similar documents in the dataset according to the selected search option.
-         * @param {string} collectionName 
-         * @param {number} size 
-         * @param {Document} document 
-         * @param {string} [functionName] 
-         * @param {string} [_options] 
-         * @param {boolean} [source] Indicates whether source fields are returned for matching documents.These fields are returned in the hits._source property of the search response.Defaults to false.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async search(collectionName: string, size: number, document: Document, functionName?: string, _options?: string, source?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.search(collectionName, size, document, functionName, _options, source, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['HyperspaceApi.search']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @summary Set Function
-         * @param {string} collectionName 
-         * @param {string} functionName 
-         * @param {any} body 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async setFunction(collectionName: string, functionName: string, body: any, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StatusDto>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.setFunction(collectionName, functionName, body, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['HyperspaceApi.setFunction']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -1460,17 +1201,6 @@ export const HyperspaceApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * 
-         * @summary Delete function by name
-         * @param {string} collectionName 
-         * @param {string} functionName 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        deleteFunction(collectionName: string, functionName: string, options?: any): AxiosPromise<StatusDto> {
-            return localVarFp.deleteFunction(collectionName, functionName, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
          * @summary Find top X similar documents in the dataset using Elasticsearch DSL query
          * @param {string} collectionName 
          * @param {number} size 
@@ -1494,17 +1224,6 @@ export const HyperspaceApiFactory = function (configuration?: Configuration, bas
          */
         getDocument(collectionName: string, documentId: string, metadataOnly?: boolean, options?: any): AxiosPromise<any> {
             return localVarFp.getDocument(collectionName, documentId, metadataOnly, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Get Function
-         * @param {string} collectionName 
-         * @param {string} functionName 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getFunction(collectionName: string, functionName: string, options?: any): AxiosPromise<any> {
-            return localVarFp.getFunction(collectionName, functionName, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1534,33 +1253,6 @@ export const HyperspaceApiFactory = function (configuration?: Configuration, bas
          */
         resetPassword(options?: any): AxiosPromise<string> {
             return localVarFp.resetPassword(options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Find top X similar documents in the dataset according to the selected search option.
-         * @param {string} collectionName 
-         * @param {number} size 
-         * @param {Document} document 
-         * @param {string} [functionName] 
-         * @param {string} [_options] 
-         * @param {boolean} [source] Indicates whether source fields are returned for matching documents.These fields are returned in the hits._source property of the search response.Defaults to false.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        search(collectionName: string, size: number, document: Document, functionName?: string, _options?: string, source?: boolean, options?: any): AxiosPromise<any> {
-            return localVarFp.search(collectionName, size, document, functionName, _options, source, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @summary Set Function
-         * @param {string} collectionName 
-         * @param {string} functionName 
-         * @param {any} body 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        setFunction(collectionName: string, functionName: string, body: any, options?: any): AxiosPromise<StatusDto> {
-            return localVarFp.setFunction(collectionName, functionName, body, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1710,19 +1402,6 @@ export class HyperspaceApi extends BaseAPI {
 
     /**
      * 
-     * @summary Delete function by name
-     * @param {string} collectionName 
-     * @param {string} functionName 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof HyperspaceApi
-     */
-    public deleteFunction(collectionName: string, functionName: string, options?: RawAxiosRequestConfig) {
-        return HyperspaceApiFp(this.configuration).deleteFunction(collectionName, functionName, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
      * @summary Find top X similar documents in the dataset using Elasticsearch DSL query
      * @param {string} collectionName 
      * @param {number} size 
@@ -1749,19 +1428,6 @@ export class HyperspaceApi extends BaseAPI {
      */
     public getDocument(collectionName: string, documentId: string, metadataOnly?: boolean, options?: RawAxiosRequestConfig) {
         return HyperspaceApiFp(this.configuration).getDocument(collectionName, documentId, metadataOnly, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Get Function
-     * @param {string} collectionName 
-     * @param {string} functionName 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof HyperspaceApi
-     */
-    public getFunction(collectionName: string, functionName: string, options?: RawAxiosRequestConfig) {
-        return HyperspaceApiFp(this.configuration).getFunction(collectionName, functionName, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1797,37 +1463,6 @@ export class HyperspaceApi extends BaseAPI {
      */
     public resetPassword(options?: RawAxiosRequestConfig) {
         return HyperspaceApiFp(this.configuration).resetPassword(options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Find top X similar documents in the dataset according to the selected search option.
-     * @param {string} collectionName 
-     * @param {number} size 
-     * @param {Document} document 
-     * @param {string} [functionName] 
-     * @param {string} [_options] 
-     * @param {boolean} [source] Indicates whether source fields are returned for matching documents.These fields are returned in the hits._source property of the search response.Defaults to false.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof HyperspaceApi
-     */
-    public search(collectionName: string, size: number, document: Document, functionName?: string, _options?: string, source?: boolean, options?: RawAxiosRequestConfig) {
-        return HyperspaceApiFp(this.configuration).search(collectionName, size, document, functionName, _options, source, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @summary Set Function
-     * @param {string} collectionName 
-     * @param {string} functionName 
-     * @param {any} body 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof HyperspaceApi
-     */
-    public setFunction(collectionName: string, functionName: string, body: any, options?: RawAxiosRequestConfig) {
-        return HyperspaceApiFp(this.configuration).setFunction(collectionName, functionName, body, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

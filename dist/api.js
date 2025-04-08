@@ -347,42 +347,6 @@ const HyperspaceApiAxiosParamCreator = function (configuration) {
         }),
         /**
          *
-         * @summary Delete function by name
-         * @param {string} collectionName
-         * @param {string} functionName
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        deleteFunction: (collectionName, functionName, options = {}) => __awaiter(this, void 0, void 0, function* () {
-            // verify required parameter 'collectionName' is not null or undefined
-            (0, common_1.assertParamExists)('deleteFunction', 'collectionName', collectionName);
-            // verify required parameter 'functionName' is not null or undefined
-            (0, common_1.assertParamExists)('deleteFunction', 'functionName', functionName);
-            const localVarPath = `/api/v1/{collectionName}/function/delete/{functionName}`
-                .replace(`{${"collectionName"}}`, encodeURIComponent(String(collectionName)))
-                .replace(`{${"functionName"}}`, encodeURIComponent(String(functionName)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
-            const localVarHeaderParameter = {};
-            const localVarQueryParameter = {};
-            // authentication bearer required
-            // http bearer authentication required
-            yield (0, common_1.setBearerAuthToObject)(localVarHeaderParameter, configuration);
-            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
-            return {
-                url: (0, common_1.toPathString)(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        }),
-        /**
-         *
          * @summary Find top X similar documents in the dataset using Elasticsearch DSL query
          * @param {string} collectionName
          * @param {number} size
@@ -476,42 +440,6 @@ const HyperspaceApiAxiosParamCreator = function (configuration) {
         }),
         /**
          *
-         * @summary Get Function
-         * @param {string} collectionName
-         * @param {string} functionName
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getFunction: (collectionName, functionName, options = {}) => __awaiter(this, void 0, void 0, function* () {
-            // verify required parameter 'collectionName' is not null or undefined
-            (0, common_1.assertParamExists)('getFunction', 'collectionName', collectionName);
-            // verify required parameter 'functionName' is not null or undefined
-            (0, common_1.assertParamExists)('getFunction', 'functionName', functionName);
-            const localVarPath = `/api/v1/{collectionName}/function/{functionName}`
-                .replace(`{${"collectionName"}}`, encodeURIComponent(String(collectionName)))
-                .replace(`{${"functionName"}}`, encodeURIComponent(String(functionName)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = Object.assign(Object.assign({ method: 'GET' }, baseOptions), options);
-            const localVarHeaderParameter = {};
-            const localVarQueryParameter = {};
-            // authentication bearer required
-            // http bearer authentication required
-            yield (0, common_1.setBearerAuthToObject)(localVarHeaderParameter, configuration);
-            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
-            return {
-                url: (0, common_1.toPathString)(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        }),
-        /**
-         *
          * @summary Get schema of collection
          * @param {string} collectionName
          * @param {*} [options] Override http request option.
@@ -595,102 +523,6 @@ const HyperspaceApiAxiosParamCreator = function (configuration) {
             (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
-            return {
-                url: (0, common_1.toPathString)(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        }),
-        /**
-         *
-         * @summary Find top X similar documents in the dataset according to the selected search option.
-         * @param {string} collectionName
-         * @param {number} size
-         * @param {Document} document
-         * @param {string} [functionName]
-         * @param {string} [_options]
-         * @param {boolean} [source] Indicates whether source fields are returned for matching documents.These fields are returned in the hits._source property of the search response.Defaults to false.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        search: (collectionName, size, document, functionName, _options, source, options = {}) => __awaiter(this, void 0, void 0, function* () {
-            // verify required parameter 'collectionName' is not null or undefined
-            (0, common_1.assertParamExists)('search', 'collectionName', collectionName);
-            // verify required parameter 'size' is not null or undefined
-            (0, common_1.assertParamExists)('search', 'size', size);
-            // verify required parameter 'document' is not null or undefined
-            (0, common_1.assertParamExists)('search', 'document', document);
-            const localVarPath = `/api/v1/{collectionName}/search`
-                .replace(`{${"collectionName"}}`, encodeURIComponent(String(collectionName)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = Object.assign(Object.assign({ method: 'POST' }, baseOptions), options);
-            const localVarHeaderParameter = {};
-            const localVarQueryParameter = {};
-            // authentication bearer required
-            // http bearer authentication required
-            yield (0, common_1.setBearerAuthToObject)(localVarHeaderParameter, configuration);
-            if (size !== undefined) {
-                localVarQueryParameter['size'] = size;
-            }
-            if (functionName !== undefined) {
-                localVarQueryParameter['functionName'] = functionName;
-            }
-            if (_options !== undefined) {
-                localVarQueryParameter['options'] = _options;
-            }
-            if (source !== undefined) {
-                localVarQueryParameter['_source'] = source;
-            }
-            localVarHeaderParameter['Content-Type'] = 'application/msgpack';
-            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
-            localVarRequestOptions.data = document;
-            return {
-                url: (0, common_1.toPathString)(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        }),
-        /**
-         *
-         * @summary Set Function
-         * @param {string} collectionName
-         * @param {string} functionName
-         * @param {any} body
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        setFunction: (collectionName, functionName, body, options = {}) => __awaiter(this, void 0, void 0, function* () {
-            // verify required parameter 'collectionName' is not null or undefined
-            (0, common_1.assertParamExists)('setFunction', 'collectionName', collectionName);
-            // verify required parameter 'functionName' is not null or undefined
-            (0, common_1.assertParamExists)('setFunction', 'functionName', functionName);
-            // verify required parameter 'body' is not null or undefined
-            (0, common_1.assertParamExists)('setFunction', 'body', body);
-            const localVarPath = `/api/v1/{collectionName}/function/{functionName}`
-                .replace(`{${"collectionName"}}`, encodeURIComponent(String(collectionName)))
-                .replace(`{${"functionName"}}`, encodeURIComponent(String(functionName)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-            const localVarRequestOptions = Object.assign(Object.assign({ method: 'PUT' }, baseOptions), options);
-            const localVarHeaderParameter = {};
-            const localVarQueryParameter = {};
-            // authentication bearer required
-            // http bearer authentication required
-            yield (0, common_1.setBearerAuthToObject)(localVarHeaderParameter, configuration);
-            localVarHeaderParameter['Content-Type'] = 'text/plain';
-            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
-            localVarRequestOptions.data = (0, common_1.serializeDataIfNeeded)(body, localVarRequestOptions, configuration);
             return {
                 url: (0, common_1.toPathString)(localVarUrlObj),
                 options: localVarRequestOptions,
@@ -938,23 +770,6 @@ const HyperspaceApiFp = function (configuration) {
         },
         /**
          *
-         * @summary Delete function by name
-         * @param {string} collectionName
-         * @param {string} functionName
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        deleteFunction(collectionName, functionName, options) {
-            var _a, _b, _c;
-            return __awaiter(this, void 0, void 0, function* () {
-                const localVarAxiosArgs = yield localVarAxiosParamCreator.deleteFunction(collectionName, functionName, options);
-                const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-                const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['HyperspaceApi.deleteFunction']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
-                return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-            });
-        },
-        /**
-         *
          * @summary Find top X similar documents in the dataset using Elasticsearch DSL query
          * @param {string} collectionName
          * @param {number} size
@@ -988,23 +803,6 @@ const HyperspaceApiFp = function (configuration) {
                 const localVarAxiosArgs = yield localVarAxiosParamCreator.getDocument(collectionName, documentId, metadataOnly, options);
                 const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
                 const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['HyperspaceApi.getDocument']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
-                return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-            });
-        },
-        /**
-         *
-         * @summary Get Function
-         * @param {string} collectionName
-         * @param {string} functionName
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getFunction(collectionName, functionName, options) {
-            var _a, _b, _c;
-            return __awaiter(this, void 0, void 0, function* () {
-                const localVarAxiosArgs = yield localVarAxiosParamCreator.getFunction(collectionName, functionName, options);
-                const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-                const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['HyperspaceApi.getFunction']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
                 return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
             });
         },
@@ -1052,45 +850,6 @@ const HyperspaceApiFp = function (configuration) {
                 const localVarAxiosArgs = yield localVarAxiosParamCreator.resetPassword(options);
                 const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
                 const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['HyperspaceApi.resetPassword']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
-                return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-            });
-        },
-        /**
-         *
-         * @summary Find top X similar documents in the dataset according to the selected search option.
-         * @param {string} collectionName
-         * @param {number} size
-         * @param {Document} document
-         * @param {string} [functionName]
-         * @param {string} [_options]
-         * @param {boolean} [source] Indicates whether source fields are returned for matching documents.These fields are returned in the hits._source property of the search response.Defaults to false.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        search(collectionName, size, document, functionName, _options, source, options) {
-            var _a, _b, _c;
-            return __awaiter(this, void 0, void 0, function* () {
-                const localVarAxiosArgs = yield localVarAxiosParamCreator.search(collectionName, size, document, functionName, _options, source, options);
-                const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-                const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['HyperspaceApi.search']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
-                return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-            });
-        },
-        /**
-         *
-         * @summary Set Function
-         * @param {string} collectionName
-         * @param {string} functionName
-         * @param {any} body
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        setFunction(collectionName, functionName, body, options) {
-            var _a, _b, _c;
-            return __awaiter(this, void 0, void 0, function* () {
-                const localVarAxiosArgs = yield localVarAxiosParamCreator.setFunction(collectionName, functionName, body, options);
-                const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
-                const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['HyperspaceApi.setFunction']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
                 return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
             });
         },
@@ -1236,17 +995,6 @@ const HyperspaceApiFactory = function (configuration, basePath, axios) {
         },
         /**
          *
-         * @summary Delete function by name
-         * @param {string} collectionName
-         * @param {string} functionName
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        deleteFunction(collectionName, functionName, options) {
-            return localVarFp.deleteFunction(collectionName, functionName, options).then((request) => request(axios, basePath));
-        },
-        /**
-         *
          * @summary Find top X similar documents in the dataset using Elasticsearch DSL query
          * @param {string} collectionName
          * @param {number} size
@@ -1270,17 +1018,6 @@ const HyperspaceApiFactory = function (configuration, basePath, axios) {
          */
         getDocument(collectionName, documentId, metadataOnly, options) {
             return localVarFp.getDocument(collectionName, documentId, metadataOnly, options).then((request) => request(axios, basePath));
-        },
-        /**
-         *
-         * @summary Get Function
-         * @param {string} collectionName
-         * @param {string} functionName
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getFunction(collectionName, functionName, options) {
-            return localVarFp.getFunction(collectionName, functionName, options).then((request) => request(axios, basePath));
         },
         /**
          *
@@ -1310,33 +1047,6 @@ const HyperspaceApiFactory = function (configuration, basePath, axios) {
          */
         resetPassword(options) {
             return localVarFp.resetPassword(options).then((request) => request(axios, basePath));
-        },
-        /**
-         *
-         * @summary Find top X similar documents in the dataset according to the selected search option.
-         * @param {string} collectionName
-         * @param {number} size
-         * @param {Document} document
-         * @param {string} [functionName]
-         * @param {string} [_options]
-         * @param {boolean} [source] Indicates whether source fields are returned for matching documents.These fields are returned in the hits._source property of the search response.Defaults to false.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        search(collectionName, size, document, functionName, _options, source, options) {
-            return localVarFp.search(collectionName, size, document, functionName, _options, source, options).then((request) => request(axios, basePath));
-        },
-        /**
-         *
-         * @summary Set Function
-         * @param {string} collectionName
-         * @param {string} functionName
-         * @param {any} body
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        setFunction(collectionName, functionName, body, options) {
-            return localVarFp.setFunction(collectionName, functionName, body, options).then((request) => request(axios, basePath));
         },
         /**
          *
@@ -1477,18 +1187,6 @@ class HyperspaceApi extends base_1.BaseAPI {
     }
     /**
      *
-     * @summary Delete function by name
-     * @param {string} collectionName
-     * @param {string} functionName
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof HyperspaceApi
-     */
-    deleteFunction(collectionName, functionName, options) {
-        return (0, exports.HyperspaceApiFp)(this.configuration).deleteFunction(collectionName, functionName, options).then((request) => request(this.axios, this.basePath));
-    }
-    /**
-     *
      * @summary Find top X similar documents in the dataset using Elasticsearch DSL query
      * @param {string} collectionName
      * @param {number} size
@@ -1514,18 +1212,6 @@ class HyperspaceApi extends base_1.BaseAPI {
      */
     getDocument(collectionName, documentId, metadataOnly, options) {
         return (0, exports.HyperspaceApiFp)(this.configuration).getDocument(collectionName, documentId, metadataOnly, options).then((request) => request(this.axios, this.basePath));
-    }
-    /**
-     *
-     * @summary Get Function
-     * @param {string} collectionName
-     * @param {string} functionName
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof HyperspaceApi
-     */
-    getFunction(collectionName, functionName, options) {
-        return (0, exports.HyperspaceApiFp)(this.configuration).getFunction(collectionName, functionName, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      *
@@ -1558,35 +1244,6 @@ class HyperspaceApi extends base_1.BaseAPI {
      */
     resetPassword(options) {
         return (0, exports.HyperspaceApiFp)(this.configuration).resetPassword(options).then((request) => request(this.axios, this.basePath));
-    }
-    /**
-     *
-     * @summary Find top X similar documents in the dataset according to the selected search option.
-     * @param {string} collectionName
-     * @param {number} size
-     * @param {Document} document
-     * @param {string} [functionName]
-     * @param {string} [_options]
-     * @param {boolean} [source] Indicates whether source fields are returned for matching documents.These fields are returned in the hits._source property of the search response.Defaults to false.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof HyperspaceApi
-     */
-    search(collectionName, size, document, functionName, _options, source, options) {
-        return (0, exports.HyperspaceApiFp)(this.configuration).search(collectionName, size, document, functionName, _options, source, options).then((request) => request(this.axios, this.basePath));
-    }
-    /**
-     *
-     * @summary Set Function
-     * @param {string} collectionName
-     * @param {string} functionName
-     * @param {any} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof HyperspaceApi
-     */
-    setFunction(collectionName, functionName, body, options) {
-        return (0, exports.HyperspaceApiFp)(this.configuration).setFunction(collectionName, functionName, body, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      *

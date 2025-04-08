@@ -245,15 +245,6 @@ export declare const HyperspaceApiAxiosParamCreator: (configuration?: Configurat
     deleteDocument: (collectionName: string, documentId: string, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
     /**
      *
-     * @summary Delete function by name
-     * @param {string} collectionName
-     * @param {string} functionName
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteFunction: (collectionName: string, functionName: string, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
-    /**
-     *
      * @summary Find top X similar documents in the dataset using Elasticsearch DSL query
      * @param {string} collectionName
      * @param {number} size
@@ -274,15 +265,6 @@ export declare const HyperspaceApiAxiosParamCreator: (configuration?: Configurat
      * @throws {RequiredError}
      */
     getDocument: (collectionName: string, documentId: string, metadataOnly?: boolean, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
-    /**
-     *
-     * @summary Get Function
-     * @param {string} collectionName
-     * @param {string} functionName
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getFunction: (collectionName: string, functionName: string, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
     /**
      *
      * @summary Get schema of collection
@@ -306,29 +288,6 @@ export declare const HyperspaceApiAxiosParamCreator: (configuration?: Configurat
      * @throws {RequiredError}
      */
     resetPassword: (options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
-    /**
-     *
-     * @summary Find top X similar documents in the dataset according to the selected search option.
-     * @param {string} collectionName
-     * @param {number} size
-     * @param {Document} document
-     * @param {string} [functionName]
-     * @param {string} [_options]
-     * @param {boolean} [source] Indicates whether source fields are returned for matching documents.These fields are returned in the hits._source property of the search response.Defaults to false.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    search: (collectionName: string, size: number, document: Document, functionName?: string, _options?: string, source?: boolean, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
-    /**
-     *
-     * @summary Set Function
-     * @param {string} collectionName
-     * @param {string} functionName
-     * @param {any} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    setFunction: (collectionName: string, functionName: string, body: any, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
     /**
      *
      * @summary Update documents that match a query using a script
@@ -433,15 +392,6 @@ export declare const HyperspaceApiFp: (configuration?: Configuration) => {
     deleteDocument(collectionName: string, documentId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StatusDto>>;
     /**
      *
-     * @summary Delete function by name
-     * @param {string} collectionName
-     * @param {string} functionName
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteFunction(collectionName: string, functionName: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StatusDto>>;
-    /**
-     *
      * @summary Find top X similar documents in the dataset using Elasticsearch DSL query
      * @param {string} collectionName
      * @param {number} size
@@ -462,15 +412,6 @@ export declare const HyperspaceApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     getDocument(collectionName: string, documentId: string, metadataOnly?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>>;
-    /**
-     *
-     * @summary Get Function
-     * @param {string} collectionName
-     * @param {string} functionName
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getFunction(collectionName: string, functionName: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>>;
     /**
      *
      * @summary Get schema of collection
@@ -494,29 +435,6 @@ export declare const HyperspaceApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     resetPassword(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>>;
-    /**
-     *
-     * @summary Find top X similar documents in the dataset according to the selected search option.
-     * @param {string} collectionName
-     * @param {number} size
-     * @param {Document} document
-     * @param {string} [functionName]
-     * @param {string} [_options]
-     * @param {boolean} [source] Indicates whether source fields are returned for matching documents.These fields are returned in the hits._source property of the search response.Defaults to false.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    search(collectionName: string, size: number, document: Document, functionName?: string, _options?: string, source?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>>;
-    /**
-     *
-     * @summary Set Function
-     * @param {string} collectionName
-     * @param {string} functionName
-     * @param {any} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    setFunction(collectionName: string, functionName: string, body: any, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StatusDto>>;
     /**
      *
      * @summary Update documents that match a query using a script
@@ -621,15 +539,6 @@ export declare const HyperspaceApiFactory: (configuration?: Configuration, baseP
     deleteDocument(collectionName: string, documentId: string, options?: any): AxiosPromise<StatusDto>;
     /**
      *
-     * @summary Delete function by name
-     * @param {string} collectionName
-     * @param {string} functionName
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteFunction(collectionName: string, functionName: string, options?: any): AxiosPromise<StatusDto>;
-    /**
-     *
      * @summary Find top X similar documents in the dataset using Elasticsearch DSL query
      * @param {string} collectionName
      * @param {number} size
@@ -650,15 +559,6 @@ export declare const HyperspaceApiFactory: (configuration?: Configuration, baseP
      * @throws {RequiredError}
      */
     getDocument(collectionName: string, documentId: string, metadataOnly?: boolean, options?: any): AxiosPromise<any>;
-    /**
-     *
-     * @summary Get Function
-     * @param {string} collectionName
-     * @param {string} functionName
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getFunction(collectionName: string, functionName: string, options?: any): AxiosPromise<any>;
     /**
      *
      * @summary Get schema of collection
@@ -682,29 +582,6 @@ export declare const HyperspaceApiFactory: (configuration?: Configuration, baseP
      * @throws {RequiredError}
      */
     resetPassword(options?: any): AxiosPromise<string>;
-    /**
-     *
-     * @summary Find top X similar documents in the dataset according to the selected search option.
-     * @param {string} collectionName
-     * @param {number} size
-     * @param {Document} document
-     * @param {string} [functionName]
-     * @param {string} [_options]
-     * @param {boolean} [source] Indicates whether source fields are returned for matching documents.These fields are returned in the hits._source property of the search response.Defaults to false.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    search(collectionName: string, size: number, document: Document, functionName?: string, _options?: string, source?: boolean, options?: any): AxiosPromise<any>;
-    /**
-     *
-     * @summary Set Function
-     * @param {string} collectionName
-     * @param {string} functionName
-     * @param {any} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    setFunction(collectionName: string, functionName: string, body: any, options?: any): AxiosPromise<StatusDto>;
     /**
      *
      * @summary Update documents that match a query using a script
@@ -820,16 +697,6 @@ export declare class HyperspaceApi extends BaseAPI {
     deleteDocument(collectionName: string, documentId: string, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<StatusDto, any>>;
     /**
      *
-     * @summary Delete function by name
-     * @param {string} collectionName
-     * @param {string} functionName
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof HyperspaceApi
-     */
-    deleteFunction(collectionName: string, functionName: string, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<StatusDto, any>>;
-    /**
-     *
      * @summary Find top X similar documents in the dataset using Elasticsearch DSL query
      * @param {string} collectionName
      * @param {number} size
@@ -852,16 +719,6 @@ export declare class HyperspaceApi extends BaseAPI {
      * @memberof HyperspaceApi
      */
     getDocument(collectionName: string, documentId: string, metadataOnly?: boolean, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<any, any>>;
-    /**
-     *
-     * @summary Get Function
-     * @param {string} collectionName
-     * @param {string} functionName
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof HyperspaceApi
-     */
-    getFunction(collectionName: string, functionName: string, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<any, any>>;
     /**
      *
      * @summary Get schema of collection
@@ -888,31 +745,6 @@ export declare class HyperspaceApi extends BaseAPI {
      * @memberof HyperspaceApi
      */
     resetPassword(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<string, any>>;
-    /**
-     *
-     * @summary Find top X similar documents in the dataset according to the selected search option.
-     * @param {string} collectionName
-     * @param {number} size
-     * @param {Document} document
-     * @param {string} [functionName]
-     * @param {string} [_options]
-     * @param {boolean} [source] Indicates whether source fields are returned for matching documents.These fields are returned in the hits._source property of the search response.Defaults to false.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof HyperspaceApi
-     */
-    search(collectionName: string, size: number, document: Document, functionName?: string, _options?: string, source?: boolean, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<any, any>>;
-    /**
-     *
-     * @summary Set Function
-     * @param {string} collectionName
-     * @param {string} functionName
-     * @param {any} body
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof HyperspaceApi
-     */
-    setFunction(collectionName: string, functionName: string, body: any, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<StatusDto, any>>;
     /**
      *
      * @summary Update documents that match a query using a script

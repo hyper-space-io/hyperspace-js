@@ -133,7 +133,7 @@ export declare class HyperspaceClient {
      * @param {string} functionName
      * @memberof HyperspaceClient
      */
-    deleteFunction(collectionName: string, functionName: string): Promise<AxiosResponse<import("./api").StatusDto, any>>;
+    deleteFunction(collectionName: string, functionName: string): any;
     /**
      *
      * @summary Get Function
@@ -141,7 +141,7 @@ export declare class HyperspaceClient {
      * @param {string} functionName
      * @memberof HyperspaceClient
      */
-    getFunction(collectionName: string, functionName: string): Promise<AxiosResponse<any, any>>;
+    getFunction(collectionName: string, functionName: string): any;
     /**
      *
      * @summary Get schema of collection
@@ -170,7 +170,7 @@ export declare class HyperspaceClient {
      * @param {any} body
      * @memberof HyperspaceClient
      */
-    setFunction(collectionName: string, functionName: string, body: any): Promise<AxiosResponse<import("./api").StatusDto, any>>;
+    setFunction(collectionName: string, functionName: string, body: any): any;
     /**
      *
      * @summary Get the information of all the collections.
@@ -208,7 +208,7 @@ export declare class HyperspaceClient {
      * @param {boolean} [source]
      * @memberof HyperspaceClient
      */
-    pythonSearch(collectionName: string, size: number, document: Document, functionName?: string, source?: boolean): Promise<AxiosResponse<any, any>>;
+    pythonSearch(collectionName: string, size: number, document: Document, functionName?: string, source?: boolean): any;
     /**
      *
      * @summary Returns results matching a query.
