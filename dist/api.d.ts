@@ -64,13 +64,12 @@ export interface DeleteByQueryResponse {
  * @interface Document
  */
 export interface Document {
-    [key: string]: any;
     /**
      *
      * @type {string}
      * @memberof Document
      */
-    'id'?: string;
+    '_id'?: string;
 }
 /**
  *
