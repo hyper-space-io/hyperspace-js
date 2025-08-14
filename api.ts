@@ -266,6 +266,50 @@ export const HyperspaceApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * 
+         * @summary Process bulk operations on documents
+         * @param {string} collectionName 
+         * @param {Array<Document>} document 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        bulk: async (collectionName: string, document: Array<Document>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'collectionName' is not null or undefined
+            assertParamExists('bulk', 'collectionName', collectionName)
+            // verify required parameter 'document' is not null or undefined
+            assertParamExists('bulk', 'document', document)
+            const localVarPath = `/api/v1/{collectionName}/bulk`
+                .replace(`{${"collectionName"}}`, encodeURIComponent(String(collectionName)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/msgpack';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = document
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Clear all collection vectors
          * @param {string} collectionName 
          * @param {*} [options] Override http request option.
@@ -902,6 +946,20 @@ export const HyperspaceApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Process bulk operations on documents
+         * @param {string} collectionName 
+         * @param {Array<Document>} document 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async bulk(collectionName: string, document: Array<Document>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.bulk(collectionName, document, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['HyperspaceApi.bulk']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
          * @summary Clear all collection vectors
          * @param {string} collectionName 
          * @param {*} [options] Override http request option.
@@ -1127,6 +1185,17 @@ export const HyperspaceApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * 
+         * @summary Process bulk operations on documents
+         * @param {string} collectionName 
+         * @param {Array<Document>} document 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        bulk(collectionName: string, document: Array<Document>, options?: any): AxiosPromise<any> {
+            return localVarFp.bulk(collectionName, document, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary Clear all collection vectors
          * @param {string} collectionName 
          * @param {*} [options] Override http request option.
@@ -1310,6 +1379,19 @@ export class HyperspaceApi extends BaseAPI {
      */
     public addDocument(collectionName: string, document: Document, options?: RawAxiosRequestConfig) {
         return HyperspaceApiFp(this.configuration).addDocument(collectionName, document, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Process bulk operations on documents
+     * @param {string} collectionName 
+     * @param {Array<Document>} document 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof HyperspaceApi
+     */
+    public bulk(collectionName: string, document: Array<Document>, options?: RawAxiosRequestConfig) {
+        return HyperspaceApiFp(this.configuration).bulk(collectionName, document, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

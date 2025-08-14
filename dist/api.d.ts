@@ -186,6 +186,15 @@ export declare const HyperspaceApiAxiosParamCreator: (configuration?: Configurat
     addDocument: (collectionName: string, document: Document, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
     /**
      *
+     * @summary Process bulk operations on documents
+     * @param {string} collectionName
+     * @param {Array<Document>} document
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    bulk: (collectionName: string, document: Array<Document>, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     *
      * @summary Clear all collection vectors
      * @param {string} collectionName
      * @param {*} [options] Override http request option.
@@ -333,6 +342,15 @@ export declare const HyperspaceApiFp: (configuration?: Configuration) => {
     addDocument(collectionName: string, document: Document, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>>;
     /**
      *
+     * @summary Process bulk operations on documents
+     * @param {string} collectionName
+     * @param {Array<Document>} document
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    bulk(collectionName: string, document: Array<Document>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>>;
+    /**
+     *
      * @summary Clear all collection vectors
      * @param {string} collectionName
      * @param {*} [options] Override http request option.
@@ -478,6 +496,15 @@ export declare const HyperspaceApiFactory: (configuration?: Configuration, baseP
      * @throws {RequiredError}
      */
     addDocument(collectionName: string, document: Document, options?: any): AxiosPromise<any>;
+    /**
+     *
+     * @summary Process bulk operations on documents
+     * @param {string} collectionName
+     * @param {Array<Document>} document
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    bulk(collectionName: string, document: Array<Document>, options?: any): AxiosPromise<any>;
     /**
      *
      * @summary Clear all collection vectors
@@ -629,6 +656,16 @@ export declare class HyperspaceApi extends BaseAPI {
      * @memberof HyperspaceApi
      */
     addDocument(collectionName: string, document: Document, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<any, any>>;
+    /**
+     *
+     * @summary Process bulk operations on documents
+     * @param {string} collectionName
+     * @param {Array<Document>} document
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof HyperspaceApi
+     */
+    bulk(collectionName: string, document: Array<Document>, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<any, any>>;
     /**
      *
      * @summary Clear all collection vectors
