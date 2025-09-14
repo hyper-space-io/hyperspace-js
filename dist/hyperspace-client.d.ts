@@ -76,14 +76,14 @@ export declare class Indices {
      * @param {IndicesCreateRequest} params
      * @memberof Indices
      */
-    create(params: IndicesCreateRequest): Promise<AxiosResponse<any, any>>;
+    create(params: IndicesCreateRequest): Promise<AxiosResponse<any, any, {}>>;
     /**
      *
      * @summary Delete a collection
      * @param {IndicesDeleteRequest} params
      * @memberof Indices
      */
-    delete(params: IndicesDeleteRequest): Promise<AxiosResponse<import("./api").StatusDto, any>>;
+    delete(params: IndicesDeleteRequest): Promise<AxiosResponse<import("./api").StatusDto, any, {}>>;
 }
 export declare class HyperspaceClient {
     private readonly api;
@@ -96,21 +96,21 @@ export declare class HyperspaceClient {
      * @param {Array<Document>} document
      * @memberof HyperspaceClient
      */
-    addBatch(collectionName: string, document: Array<Document>): Promise<AxiosResponse<any, any>>;
+    addBatch(collectionName: string, document: Array<Document>): Promise<AxiosResponse<any, any, {}>>;
     /**
      *
      * @summary Clear all collection vectors
      * @param {string} collectionName
      * @memberof HyperspaceClient
      */
-    clearCollection(collectionName: string): Promise<AxiosResponse<import("./api").StatusDto, any>>;
+    clearCollection(collectionName: string): Promise<AxiosResponse<import("./api").StatusDto, any, {}>>;
     /**
      *
      * @summary Commit
      * @param {string} collectionName
      * @memberof HyperspaceClient
      */
-    commit(collectionName: string): Promise<AxiosResponse<import("./api").StatusDto, any>>;
+    commit(collectionName: string): Promise<AxiosResponse<import("./api").StatusDto, any, {}>>;
     /**
      *
      * @summary Delete document by Id
@@ -118,14 +118,14 @@ export declare class HyperspaceClient {
      * @param {string} documentId
      * @memberof HyperspaceClient
      */
-    deleteDocument(collectionName: string, documentId: string): Promise<AxiosResponse<import("./api").StatusDto, any>>;
+    deleteDocument(collectionName: string, documentId: string): Promise<AxiosResponse<import("./api").StatusDto, any, {}>>;
     /**
      *
      * @summary Deletes documents matching the provided query.
      * @param {string} params
      * @memberof HyperspaceClient
      */
-    deleteByQuery(params: DeleteByQueryRequest): Promise<AxiosResponse<import("./api").DeleteByQueryResponse, any>>;
+    deleteByQuery(params: DeleteByQueryRequest): Promise<AxiosResponse<import("./api").DeleteByQueryResponse, any, {}>>;
     /**
      *
      * @summary Delete function by name
@@ -148,20 +148,20 @@ export declare class HyperspaceClient {
      * @param {string} collectionName
      * @memberof HyperspaceClient
      */
-    getSchema(collectionName: string): Promise<AxiosResponse<any, any>>;
+    getSchema(collectionName: string): Promise<AxiosResponse<any, any, {}>>;
     /**
      *
      * @summary Login
      * @param {LoginDto} loginDto
      * @memberof HyperspaceClient
      */
-    login(loginDto: LoginDto): Promise<AxiosResponse<import("./api").AuthDto, any>>;
+    login(loginDto: LoginDto): Promise<AxiosResponse<import("./api").AuthDto, any, {}>>;
     /**
      *
      * @summary Reset password
      * @memberof HyperspaceClient
      */
-    resetPassword(): Promise<AxiosResponse<string, any>>;
+    resetPassword(): Promise<AxiosResponse<string, any, {}>>;
     /**
      *
      * @summary Set Function
@@ -176,28 +176,28 @@ export declare class HyperspaceClient {
      * @summary Get the information of all the collections.
      * @memberof HyperspaceClient
      */
-    info(): Promise<AxiosResponse<any, any>>;
+    info(): Promise<AxiosResponse<any, any, {}>>;
     /**
      *
      * @summary Creates a document in an index.
      * @memberof HyperspaceClient
      * @param params
      */
-    index(params: IndexRequest): Promise<AxiosResponse<any, any>>;
+    index(params: IndexRequest): Promise<AxiosResponse<any, any, {}>>;
     /**
      *
      * @summary Updates a document with a script or partial document.
      * @memberof HyperspaceClient
      * @param params
      */
-    update(params: UpdateRequest): Promise<AxiosResponse<any, any>>;
+    update(params: UpdateRequest): Promise<AxiosResponse<any, any, {}>>;
     /**
      *
      * @summary Updates documents that match the specified query.
      * @memberof HyperspaceClient
      * @param params
      */
-    updateByQuery(params: UpdateByQueryRequest): Promise<AxiosResponse<string, any>>;
+    updateByQuery(params: UpdateByQueryRequest): Promise<AxiosResponse<string, any, {}>>;
     /**
      *
      * @summary Find top X similar documents in the dataset according to the selected search option.

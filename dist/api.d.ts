@@ -645,7 +645,7 @@ export declare class HyperspaceApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof HyperspaceApi
      */
-    addBatch(collectionName: string, document: Array<Document>, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<any, any>>;
+    addBatch(collectionName: string, document: Array<Document>, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<any, any, {}>>;
     /**
      *
      * @summary Add a new document to the collection
@@ -655,7 +655,7 @@ export declare class HyperspaceApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof HyperspaceApi
      */
-    addDocument(collectionName: string, document: Document, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<any, any>>;
+    addDocument(collectionName: string, document: Document, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<any, any, {}>>;
     /**
      *
      * @summary Process bulk operations on documents
@@ -665,7 +665,7 @@ export declare class HyperspaceApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof HyperspaceApi
      */
-    bulk(collectionName: string, document: Array<Document>, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<any, any>>;
+    bulk(collectionName: string, document: Array<Document>, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<any, any, {}>>;
     /**
      *
      * @summary Clear all collection vectors
@@ -674,7 +674,7 @@ export declare class HyperspaceApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof HyperspaceApi
      */
-    clearCollection(collectionName: string, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<StatusDto, any>>;
+    clearCollection(collectionName: string, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<StatusDto, any, {}>>;
     /**
      *
      * @summary Get the information of all the collections
@@ -682,7 +682,7 @@ export declare class HyperspaceApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof HyperspaceApi
      */
-    collectionsInfo(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<any, any>>;
+    collectionsInfo(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<any, any, {}>>;
     /**
      *
      * @summary Commit
@@ -691,7 +691,7 @@ export declare class HyperspaceApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof HyperspaceApi
      */
-    commit(collectionName: string, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<StatusDto, any>>;
+    commit(collectionName: string, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<StatusDto, any, {}>>;
     /**
      *
      * @summary Create a new collection
@@ -701,7 +701,7 @@ export declare class HyperspaceApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof HyperspaceApi
      */
-    createCollection(collectionName: string, body: any, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<any, any>>;
+    createCollection(collectionName: string, body: any, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<any, any, {}>>;
     /**
      *
      * @summary Deletes documents that match the specified query.
@@ -711,7 +711,7 @@ export declare class HyperspaceApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof HyperspaceApi
      */
-    deleteByQuery(collectionName: string, deleteByQueryRequest: DeleteByQueryRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<DeleteByQueryResponse, any>>;
+    deleteByQuery(collectionName: string, deleteByQueryRequest: DeleteByQueryRequest, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<DeleteByQueryResponse, any, {}>>;
     /**
      *
      * @summary Delete a collection
@@ -720,7 +720,7 @@ export declare class HyperspaceApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof HyperspaceApi
      */
-    deleteCollection(collectionName: string, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<StatusDto, any>>;
+    deleteCollection(collectionName: string, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<StatusDto, any, {}>>;
     /**
      *
      * @summary Delete document by Id
@@ -730,7 +730,7 @@ export declare class HyperspaceApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof HyperspaceApi
      */
-    deleteDocument(collectionName: string, documentId: string, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<StatusDto, any>>;
+    deleteDocument(collectionName: string, documentId: string, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<StatusDto, any, {}>>;
     /**
      *
      * @summary Find top X similar documents in the dataset using Elasticsearch DSL query
@@ -743,7 +743,7 @@ export declare class HyperspaceApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof HyperspaceApi
      */
-    dslSearch(collectionName: string, size: number, body: any, _options?: string, source?: boolean, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<any, any>>;
+    dslSearch(collectionName: string, size: number, body: any, _options?: string, source?: boolean, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<any, any, {}>>;
     /**
      *
      * @summary Find document by Id
@@ -754,7 +754,7 @@ export declare class HyperspaceApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof HyperspaceApi
      */
-    getDocument(collectionName: string, documentId: string, metadataOnly?: boolean, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<any, any>>;
+    getDocument(collectionName: string, documentId: string, metadataOnly?: boolean, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<any, any, {}>>;
     /**
      *
      * @summary Get schema of collection
@@ -763,7 +763,7 @@ export declare class HyperspaceApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof HyperspaceApi
      */
-    getSchema(collectionName: string, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<any, any>>;
+    getSchema(collectionName: string, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<any, any, {}>>;
     /**
      *
      * @summary Login
@@ -772,7 +772,7 @@ export declare class HyperspaceApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof HyperspaceApi
      */
-    login(loginDto: LoginDto, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<AuthDto, any>>;
+    login(loginDto: LoginDto, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<AuthDto, any, {}>>;
     /**
      *
      * @summary Reset password
@@ -780,7 +780,7 @@ export declare class HyperspaceApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof HyperspaceApi
      */
-    resetPassword(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<string, any>>;
+    resetPassword(options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<string, any, {}>>;
     /**
      *
      * @summary Update documents that match a query using a script
@@ -790,7 +790,7 @@ export declare class HyperspaceApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof HyperspaceApi
      */
-    updateByQuery(collectionName: string, updateByQuery: UpdateByQuery, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<string, any>>;
+    updateByQuery(collectionName: string, updateByQuery: UpdateByQuery, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<string, any, {}>>;
     /**
      *
      * @summary Update document by Id in the collection
@@ -802,5 +802,5 @@ export declare class HyperspaceApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof HyperspaceApi
      */
-    updateDocument(collectionName: string, document: Document, partialUpdate?: boolean, docAsUpsert?: boolean, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<any, any>>;
+    updateDocument(collectionName: string, document: Document, partialUpdate?: boolean, docAsUpsert?: boolean, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<any, any, {}>>;
 }
