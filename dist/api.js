@@ -539,6 +539,53 @@ const HyperspaceApiAxiosParamCreator = function (configuration) {
         }),
         /**
          *
+         * @summary Run multiple DSL queries in a single request
+         * @param {string} collectionName
+         * @param {number} size
+         * @param {any} body
+         * @param {boolean} [source] Indicates whether source fields are returned for matching documents.These fields are returned in the hits._source property of the search response.Defaults to false.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        msearch: (collectionName, size, body, source, options = {}) => __awaiter(this, void 0, void 0, function* () {
+            // verify required parameter 'collectionName' is not null or undefined
+            (0, common_1.assertParamExists)('msearch', 'collectionName', collectionName);
+            // verify required parameter 'size' is not null or undefined
+            (0, common_1.assertParamExists)('msearch', 'size', size);
+            // verify required parameter 'body' is not null or undefined
+            (0, common_1.assertParamExists)('msearch', 'body', body);
+            const localVarPath = `/api/v1/{collectionName}/msearch`
+                .replace(`{${"collectionName"}}`, encodeURIComponent(String(collectionName)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = Object.assign(Object.assign({ method: 'POST' }, baseOptions), options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication bearer required
+            // http bearer authentication required
+            yield (0, common_1.setBearerAuthToObject)(localVarHeaderParameter, configuration);
+            if (size !== undefined) {
+                localVarQueryParameter['size'] = size;
+            }
+            if (source !== undefined) {
+                localVarQueryParameter['_source'] = source;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/msgpack';
+            (0, common_1.setSearchParams)(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            localVarRequestOptions.data = (0, common_1.serializeDataIfNeeded)(body, localVarRequestOptions, configuration);
+            return {
+                url: (0, common_1.toPathString)(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        }),
+        /**
+         *
          * @summary Reset password
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -894,6 +941,25 @@ const HyperspaceApiFp = function (configuration) {
         },
         /**
          *
+         * @summary Run multiple DSL queries in a single request
+         * @param {string} collectionName
+         * @param {number} size
+         * @param {any} body
+         * @param {boolean} [source] Indicates whether source fields are returned for matching documents.These fields are returned in the hits._source property of the search response.Defaults to false.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        msearch(collectionName, size, body, source, options) {
+            var _a, _b, _c;
+            return __awaiter(this, void 0, void 0, function* () {
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.msearch(collectionName, size, body, source, options);
+                const localVarOperationServerIndex = (_a = configuration === null || configuration === void 0 ? void 0 : configuration.serverIndex) !== null && _a !== void 0 ? _a : 0;
+                const localVarOperationServerBasePath = (_c = (_b = base_1.operationServerMap['HyperspaceApi.msearch']) === null || _b === void 0 ? void 0 : _b[localVarOperationServerIndex]) === null || _c === void 0 ? void 0 : _c.url;
+                return (axios, basePath) => (0, common_1.createRequestFunction)(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+            });
+        },
+        /**
+         *
          * @summary Reset password
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1106,6 +1172,19 @@ const HyperspaceApiFactory = function (configuration, basePath, axios) {
         },
         /**
          *
+         * @summary Run multiple DSL queries in a single request
+         * @param {string} collectionName
+         * @param {number} size
+         * @param {any} body
+         * @param {boolean} [source] Indicates whether source fields are returned for matching documents.These fields are returned in the hits._source property of the search response.Defaults to false.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        msearch(collectionName, size, body, source, options) {
+            return localVarFp.msearch(collectionName, size, body, source, options).then((request) => request(axios, basePath));
+        },
+        /**
+         *
          * @summary Reset password
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -1311,6 +1390,20 @@ class HyperspaceApi extends base_1.BaseAPI {
      */
     login(loginDto, options) {
         return (0, exports.HyperspaceApiFp)(this.configuration).login(loginDto, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     *
+     * @summary Run multiple DSL queries in a single request
+     * @param {string} collectionName
+     * @param {number} size
+     * @param {any} body
+     * @param {boolean} [source] Indicates whether source fields are returned for matching documents.These fields are returned in the hits._source property of the search response.Defaults to false.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof HyperspaceApi
+     */
+    msearch(collectionName, size, body, source, options) {
+        return (0, exports.HyperspaceApiFp)(this.configuration).msearch(collectionName, size, body, source, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      *

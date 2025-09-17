@@ -291,6 +291,17 @@ export declare const HyperspaceApiAxiosParamCreator: (configuration?: Configurat
     login: (loginDto: LoginDto, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
     /**
      *
+     * @summary Run multiple DSL queries in a single request
+     * @param {string} collectionName
+     * @param {number} size
+     * @param {any} body
+     * @param {boolean} [source] Indicates whether source fields are returned for matching documents.These fields are returned in the hits._source property of the search response.Defaults to false.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    msearch: (collectionName: string, size: number, body: any, source?: boolean, options?: RawAxiosRequestConfig) => Promise<RequestArgs>;
+    /**
+     *
      * @summary Reset password
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -447,6 +458,17 @@ export declare const HyperspaceApiFp: (configuration?: Configuration) => {
     login(loginDto: LoginDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AuthDto>>;
     /**
      *
+     * @summary Run multiple DSL queries in a single request
+     * @param {string} collectionName
+     * @param {number} size
+     * @param {any} body
+     * @param {boolean} [source] Indicates whether source fields are returned for matching documents.These fields are returned in the hits._source property of the search response.Defaults to false.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    msearch(collectionName: string, size: number, body: any, source?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>>;
+    /**
+     *
      * @summary Reset password
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -601,6 +623,17 @@ export declare const HyperspaceApiFactory: (configuration?: Configuration, baseP
      * @throws {RequiredError}
      */
     login(loginDto: LoginDto, options?: any): AxiosPromise<AuthDto>;
+    /**
+     *
+     * @summary Run multiple DSL queries in a single request
+     * @param {string} collectionName
+     * @param {number} size
+     * @param {any} body
+     * @param {boolean} [source] Indicates whether source fields are returned for matching documents.These fields are returned in the hits._source property of the search response.Defaults to false.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    msearch(collectionName: string, size: number, body: any, source?: boolean, options?: any): AxiosPromise<any>;
     /**
      *
      * @summary Reset password
@@ -773,6 +806,18 @@ export declare class HyperspaceApi extends BaseAPI {
      * @memberof HyperspaceApi
      */
     login(loginDto: LoginDto, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<AuthDto, any, {}>>;
+    /**
+     *
+     * @summary Run multiple DSL queries in a single request
+     * @param {string} collectionName
+     * @param {number} size
+     * @param {any} body
+     * @param {boolean} [source] Indicates whether source fields are returned for matching documents.These fields are returned in the hits._source property of the search response.Defaults to false.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof HyperspaceApi
+     */
+    msearch(collectionName: string, size: number, body: any, source?: boolean, options?: RawAxiosRequestConfig): Promise<import("axios").AxiosResponse<any, any, {}>>;
     /**
      *
      * @summary Reset password
