@@ -593,18 +593,15 @@ export const HyperspaceApiAxiosParamCreator = function (configuration?: Configur
          * 
          * @summary Find top X similar documents in the dataset using Elasticsearch DSL query
          * @param {string} collectionName 
-         * @param {number} size 
          * @param {any} body 
          * @param {string} [_options] 
          * @param {boolean} [source] Indicates whether source fields are returned for matching documents.These fields are returned in the hits._source property of the search response.Defaults to false.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        dslSearch: async (collectionName: string, size: number, body: any, _options?: string, source?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        dslSearch: async (collectionName: string, body: any, _options?: string, source?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'collectionName' is not null or undefined
             assertParamExists('dslSearch', 'collectionName', collectionName)
-            // verify required parameter 'size' is not null or undefined
-            assertParamExists('dslSearch', 'size', size)
             // verify required parameter 'body' is not null or undefined
             assertParamExists('dslSearch', 'body', body)
             const localVarPath = `/api/v1/{collectionName}/dsl_search`
@@ -623,10 +620,6 @@ export const HyperspaceApiAxiosParamCreator = function (configuration?: Configur
             // authentication bearer required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (size !== undefined) {
-                localVarQueryParameter['size'] = size;
-            }
 
             if (_options !== undefined) {
                 localVarQueryParameter['options'] = _options;
@@ -778,17 +771,14 @@ export const HyperspaceApiAxiosParamCreator = function (configuration?: Configur
          * 
          * @summary Run multiple DSL queries in a single request
          * @param {string} collectionName 
-         * @param {number} size 
          * @param {any} body 
          * @param {boolean} [source] Indicates whether source fields are returned for matching documents.These fields are returned in the hits._source property of the search response.Defaults to false.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        msearch: async (collectionName: string, size: number, body: any, source?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        msearch: async (collectionName: string, body: any, source?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'collectionName' is not null or undefined
             assertParamExists('msearch', 'collectionName', collectionName)
-            // verify required parameter 'size' is not null or undefined
-            assertParamExists('msearch', 'size', size)
             // verify required parameter 'body' is not null or undefined
             assertParamExists('msearch', 'body', body)
             const localVarPath = `/api/v1/{collectionName}/msearch`
@@ -807,10 +797,6 @@ export const HyperspaceApiAxiosParamCreator = function (configuration?: Configur
             // authentication bearer required
             // http bearer authentication required
             await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (size !== undefined) {
-                localVarQueryParameter['size'] = size;
-            }
 
             if (source !== undefined) {
                 localVarQueryParameter['_source'] = source;
@@ -1111,15 +1097,14 @@ export const HyperspaceApiFp = function(configuration?: Configuration) {
          * 
          * @summary Find top X similar documents in the dataset using Elasticsearch DSL query
          * @param {string} collectionName 
-         * @param {number} size 
          * @param {any} body 
          * @param {string} [_options] 
          * @param {boolean} [source] Indicates whether source fields are returned for matching documents.These fields are returned in the hits._source property of the search response.Defaults to false.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async dslSearch(collectionName: string, size: number, body: any, _options?: string, source?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.dslSearch(collectionName, size, body, _options, source, options);
+        async dslSearch(collectionName: string, body: any, _options?: string, source?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.dslSearch(collectionName, body, _options, source, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['HyperspaceApi.dslSearch']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -1169,14 +1154,13 @@ export const HyperspaceApiFp = function(configuration?: Configuration) {
          * 
          * @summary Run multiple DSL queries in a single request
          * @param {string} collectionName 
-         * @param {number} size 
          * @param {any} body 
          * @param {boolean} [source] Indicates whether source fields are returned for matching documents.These fields are returned in the hits._source property of the search response.Defaults to false.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async msearch(collectionName: string, size: number, body: any, source?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.msearch(collectionName, size, body, source, options);
+        async msearch(collectionName: string, body: any, source?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<any>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.msearch(collectionName, body, source, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['HyperspaceApi.msearch']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -1342,15 +1326,14 @@ export const HyperspaceApiFactory = function (configuration?: Configuration, bas
          * 
          * @summary Find top X similar documents in the dataset using Elasticsearch DSL query
          * @param {string} collectionName 
-         * @param {number} size 
          * @param {any} body 
          * @param {string} [_options] 
          * @param {boolean} [source] Indicates whether source fields are returned for matching documents.These fields are returned in the hits._source property of the search response.Defaults to false.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        dslSearch(collectionName: string, size: number, body: any, _options?: string, source?: boolean, options?: any): AxiosPromise<any> {
-            return localVarFp.dslSearch(collectionName, size, body, _options, source, options).then((request) => request(axios, basePath));
+        dslSearch(collectionName: string, body: any, _options?: string, source?: boolean, options?: any): AxiosPromise<any> {
+            return localVarFp.dslSearch(collectionName, body, _options, source, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1388,14 +1371,13 @@ export const HyperspaceApiFactory = function (configuration?: Configuration, bas
          * 
          * @summary Run multiple DSL queries in a single request
          * @param {string} collectionName 
-         * @param {number} size 
          * @param {any} body 
          * @param {boolean} [source] Indicates whether source fields are returned for matching documents.These fields are returned in the hits._source property of the search response.Defaults to false.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        msearch(collectionName: string, size: number, body: any, source?: boolean, options?: any): AxiosPromise<any> {
-            return localVarFp.msearch(collectionName, size, body, source, options).then((request) => request(axios, basePath));
+        msearch(collectionName: string, body: any, source?: boolean, options?: any): AxiosPromise<any> {
+            return localVarFp.msearch(collectionName, body, source, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1569,7 +1551,6 @@ export class HyperspaceApi extends BaseAPI {
      * 
      * @summary Find top X similar documents in the dataset using Elasticsearch DSL query
      * @param {string} collectionName 
-     * @param {number} size 
      * @param {any} body 
      * @param {string} [_options] 
      * @param {boolean} [source] Indicates whether source fields are returned for matching documents.These fields are returned in the hits._source property of the search response.Defaults to false.
@@ -1577,8 +1558,8 @@ export class HyperspaceApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof HyperspaceApi
      */
-    public dslSearch(collectionName: string, size: number, body: any, _options?: string, source?: boolean, options?: RawAxiosRequestConfig) {
-        return HyperspaceApiFp(this.configuration).dslSearch(collectionName, size, body, _options, source, options).then((request) => request(this.axios, this.basePath));
+    public dslSearch(collectionName: string, body: any, _options?: string, source?: boolean, options?: RawAxiosRequestConfig) {
+        return HyperspaceApiFp(this.configuration).dslSearch(collectionName, body, _options, source, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -1623,15 +1604,14 @@ export class HyperspaceApi extends BaseAPI {
      * 
      * @summary Run multiple DSL queries in a single request
      * @param {string} collectionName 
-     * @param {number} size 
      * @param {any} body 
      * @param {boolean} [source] Indicates whether source fields are returned for matching documents.These fields are returned in the hits._source property of the search response.Defaults to false.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof HyperspaceApi
      */
-    public msearch(collectionName: string, size: number, body: any, source?: boolean, options?: RawAxiosRequestConfig) {
-        return HyperspaceApiFp(this.configuration).msearch(collectionName, size, body, source, options).then((request) => request(this.axios, this.basePath));
+    public msearch(collectionName: string, body: any, source?: boolean, options?: RawAxiosRequestConfig) {
+        return HyperspaceApiFp(this.configuration).msearch(collectionName, body, source, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
